@@ -1,4 +1,4 @@
 # CKB Cryptography
 
-This repository trys to build a fundamental cryptography libraries for CKB.
+This repository trys to build fundamental cryptography libraries for CKB.
 
