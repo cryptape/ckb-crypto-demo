@@ -12,4 +12,3 @@ jobs:
         with:
           project: Math layer
           column: In progress
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
