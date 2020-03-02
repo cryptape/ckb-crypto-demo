@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+
+
+gem 'ckb-sdk-ruby', github: 'nervosnetwork/ckb-sdk-ruby', require: 'ckb'
+
+# gem "rails"
