@@ -13,7 +13,7 @@
         "output": {
           "capacity": "0xdf8475800",
           "lock": {
-            "args": "0x591507c15a342092f529d34836d035e04d626582",
+            "args": "0x61726730",
             "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
             "hash_type": "data"
           },
@@ -50,7 +50,7 @@
         "output": {
           "capacity": "0x6fc23ac00",
           "lock": {
-            "args": "0x591507c15a342092f529d34836d035e04d626582",
+            "args": "0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
             "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
             "hash_type": "data"
           },
@@ -83,12 +83,12 @@
       {
         "capacity": "0x2cb417800",
         "lock": {
-          "args": "0x591507c15a342092f529d34836d035e04d626582",
+          "args": "0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
           "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
           "hash_type": "data"
         },
         "type": {
-          "args": "0x591507c15a342092f529d34836d035e04d626582",
+          "args": "0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
           "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
           "hash_type": "data"
         }
@@ -99,7 +99,7 @@
     ],
     "version": "0x0",
     "witnesses": [
-      "0x616263"
+      "0x74657374"
     ]
   }
 }
