@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: alex-page/github-project-automation-plus@v0.1.2
         with:
-          project: Math layer
+          project: lib develop
           column: In progress
           repo-token: ${{ secrets.GITHUB_TOKEN }}
