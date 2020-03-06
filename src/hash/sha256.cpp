@@ -64,6 +64,11 @@ void hex(void* buffer, size_t len) {
             printf(" ");
     }
 }
+void hexdigest(uint8_t* from,char * to){
+    for (int i=0;i<32;i++){
+        sprintf(&to[2*i],"%02x",(char*)from[i]);
+    }
+}
 
 void hexOutput(void* buffer, size_t len) {
     hex(buffer, len);
