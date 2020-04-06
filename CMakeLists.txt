@@ -1,20 +1,32 @@
-cmake_minimum_required(VERSION 3.5)
-project(crytolib_demo)
-
-set(CMAKE_CXX_STANDARD 14)
-
-set(PROJECT_BINARY_DIR ${CMAKE_SOURCE_DIR}/build/bin/)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR})
-
-INCLUDE_DIRECTORIES("${CMAKE_SOURCE_DIR}/include")
-
-add_executable(sha256 examples/main.cpp src/hash/sha256.cpp)
+cmake_minimum_required (VERSION 3.0)
+project(ckb_crypto)
 
 
+add_subdirectory(deps/mcl)
+add_subdirectory(deps/bls)
+
+include_directories(deps/mcl/include)
+include_directories(deps/mcl/include)
 
 
-add_subdirectory(test)
+#include_directories("/home/ubuntu/crypto/deps/mcl/include")
+#link_directories("/home/ubuntu/crypto/deps/mcl/build/lib")
 
-enable_testing()
-add_test(test_sha256 ${CMAKE_SOURCE_DIR}/build/test/test_sha256)
+#include_directories("/home/ubuntu/crypto/deps/bls/include")
+#link_directories("/home/ubuntu/crypto/deps/bls/build/lib")
 
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_USE_VINT -DMCL_VINT_FIXED_BUFFER")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_OPENSSL")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_XBYAK")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBLS_ETH")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -DNDEBUG")
+
+
+add_executable(blssig src/blssig.cpp)
+add_executable(blsverify src/bls_verify.cpp)
+add_executable(pairing src/pairing_c.cpp)
+
+target_link_libraries(blssig PUBLIC bls_c384_256  mcl::mcl)
+target_link_libraries(blsverify PUBLIC bls_c384_256  mcl::mcl)
+target_link_libraries(pairing   mcl::mcl mcl::bn384_256)

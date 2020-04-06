@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 /**
 	@file
 	@brief C interface of 256/384-bit optimal ate pairing over BN curves
