@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.0)
-project(mcl CXX ASM)
+project(mcl)
 set(SRCS src/fp.cpp)
 
 option(
@@ -52,9 +52,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-link_libraries("/home/ubuntu/crypto/deps/build/gmp/target/lib/libgmp.a")
-link_libraries("/home/ubuntu/crypto/deps/build/gmp/target/lib/libgmpxx.a")
-include_directories("/home/ubuntu/crypto/deps/build/gmp/target/include")
+
 
 if(USE_LLVM)
 	add_executable(gen src/gen.cpp)
@@ -86,7 +84,7 @@ if(MSVC)
 	link_directories(${CMAKE_SOURCE_DIR}/lib)
 else()
 	if("${CFLAGS_OPT_USER}" STREQUAL "")
-		set(CFLAGS_OPT_USER "-O3 -DNDEBUG")
+		set(CFLAGS_OPT_USER "-Os -DNDEBUG -fno-rtti")
 	endif()
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wformat=2 -Wcast-qual -Wcast-align -Wwrite-strings -Wfloat-equal -Wpointer-arith ${CFLAGS_OPT_USER}")
 
@@ -165,9 +163,6 @@ else()
 	endif()
 endif()
 
-include_directories(
-	${mcl_SOURCE_DIR}/include
-)
 
 if(USE_LLVM)
 	add_library(mcl SHARED ${SRCS} base64.o)
@@ -177,9 +172,12 @@ if(USE_LLVM)
 else()
 	#add_library(mcl SHARED ${SRCS})
 	add_library(mcl_st STATIC ${SRCS})
+	add_library(mcl::mcl ALIAS mcl_st)
+	target_include_directories(mcl_st PUBLIC ${PROJECT_SOURCE_DIR}/include/)
 endif()
 #target_link_libraries(mcl ${EXT_LIBS})
 target_link_libraries(mcl_st ${EXT_LIBS})
+
 set_target_properties(mcl_st PROPERTIES OUTPUT_NAME mcl)
 #set_target_properties(mcl_st PROPERTIES PREFIX "lib")
 #set_target_properties(mcl PROPERTIES OUTPUT_NAME mcl VERSION 1.0.0 SOVERSION 1)
@@ -187,25 +185,28 @@ set_target_properties(mcl_st PROPERTIES OUTPUT_NAME mcl)
 # https://community.kde.org/Policies/Binary_Compatibility_Issues_With_C%2B%2B#The_Do.27s_and_Don.27ts
 
 set(LIBS mcl_st ${EXT_LIBS})
-foreach(bit IN ITEMS 256 384 384_256 512)
+#foreach(bit IN ITEMS 256 384 384_256 512)
+foreach(bit IN ITEMS  384_256)
 	add_library(mclbn${bit} STATIC src/bn_c${bit}.cpp)
+	add_library(mcl::bn${bit} ALIAS mclbn${bit})
+	target_include_directories(mclbn${bit} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 	target_link_libraries(mclbn${bit} ${LIBS})
 	add_executable(bn_c${bit}_test test/bn_c${bit}_test.cpp)
 	target_link_libraries(bn_c${bit}_test mclbn${bit})
 endforeach()
 
-file(GLOB MCL_HEADERS include/mcl/*.hpp include/mcl/bn.h include/mcl/curve_type.h)
-file(GLOB CYBOZULIB_HEADERS include/cybozu/*.hpp)
+#file(GLOB MCL_HEADERS include/mcl/*.hpp include/mcl/bn.h include/mcl/curve_type.h)
+#file(GLOB CYBOZULIB_HEADERS include/cybozu/*.hpp)
 
 #install(TARGETS mcl DESTINATION lib)
 install(TARGETS mcl_st DESTINATION lib)
-install(TARGETS mclbn256 DESTINATION lib)
-install(TARGETS mclbn384 DESTINATION lib)
-install(TARGETS mclbn384_256 DESTINATION lib)
-install(TARGETS mclbn512 DESTINATION lib)
-install(FILES ${MCL_HEADERS} DESTINATION include/mcl)
-install(FILES include/mcl/impl/bn_c_impl.hpp DESTINATION include/mcl/impl)
-install(FILES ${CYBOZULIB_HEADERS} DESTINATION include/cybozu)
+#install(TARGETS mclbn256 DESTINATION lib)
+#install(TARGETS mclbn384 DESTINATION lib)
+#install(TARGETS mclbn384_256 DESTINATION lib)
+#install(TARGETS mclbn512 DESTINATION lib)
+#install(FILES ${MCL_HEADERS} DESTINATION include/mcl)
+#install(FILES include/mcl/impl/bn_c_impl.hpp DESTINATION include/mcl/impl)
+#install(FILES ${CYBOZULIB_HEADERS} DESTINATION include/cybozu)
 
 if(NOT ONLY_LIB)
 	set(TEST_BASE fp_test ec_test fp_util_test window_method_test elgamal_test fp_tower_test gmp_test bn_test glv_test)
@@ -221,3 +222,4 @@ if(NOT ONLY_LIB)
 		)
 	endforeach()
 endif()
+
