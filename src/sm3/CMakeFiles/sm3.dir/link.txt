@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/sm3.dir/main.cpp.o  -o sm3  -L/home/gqqqy/Desktop/botan-compile -Wl,-rpath,/home/gqqqy/Desktop/botan-compile -Wl,-Bstatic -lbotan-2 -Wl,-Bdynamic 
