@@ -1028,5 +1028,9 @@ mclSize blsPublicKeyGetCompressedStr(char *buf, mclSize maxBufSize, const blsPub
 {
     return cast(&pub->v)->getStr(buf, maxBufSize, 2048);
 }
+mclSize blsSecretKeyGetCompressedStr(char *buf, mclSize maxBufSize, const blsSecretKey *sec)
+{
+    return cast(&sec->v)->getStr(buf, maxBufSize, 2048);
+}
 #endif
 

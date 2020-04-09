@@ -7,7 +7,7 @@ add_subdirectory(deps/bls)
 
 include_directories(deps/mcl/include)
 include_directories(deps/mcl/include)
-
+include_directories(src/include)
 
 #include_directories("/home/ubuntu/crypto/deps/mcl/include")
 #link_directories("/home/ubuntu/crypto/deps/mcl/build/lib")
@@ -24,8 +24,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -DNDEBUG")
 
 
 add_executable(blssig src/blssig.cpp)
-add_executable(blsverify src/bls_verify.cpp)
+add_executable(blsverify src/blsverify.c)
 add_executable(pairing src/pairing_c.cpp)
+add_executable(hello src/hello.cpp)
 
 target_link_libraries(blssig PUBLIC bls_c384_256  mcl::mcl)
 target_link_libraries(blsverify PUBLIC bls_c384_256  mcl::mcl)
