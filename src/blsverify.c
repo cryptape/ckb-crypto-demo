@@ -1,5 +1,5 @@
 
-//#define CKB_VM
+#define CKB_VM
 
 
 

@@ -20,13 +20,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_USE_VINT -DMCL_VINT_FIXED_BUFFER")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_OPENSSL")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_XBYAK")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBLS_ETH")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -DNDEBUG")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 
 
 add_executable(blssig src/blssig.cpp)
 add_executable(blsverify src/blsverify.c)
 add_executable(pairing src/pairing_c.cpp)
-add_executable(hello src/hello.cpp)
 
 target_link_libraries(blssig PUBLIC bls_c384_256  mcl::mcl)
 target_link_libraries(blsverify PUBLIC bls_c384_256  mcl::mcl)
