@@ -1,4 +1,4 @@
-# Ctypto-demo
+# Crypto-demo
 
 ## About 
 Demo for CKB crypto lib
