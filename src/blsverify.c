@@ -1,6 +1,6 @@
 
 #define CKB_VM
-
+//#define ON_CHAIN
 
 
 #define BLS_ETH //使用ETH的规范
@@ -133,16 +133,23 @@ int main()
 
 
 
-
+#ifdef ON_CHAIN
     blsPublicKeyDeserialize(&pub,args_bytes_seg.ptr,args_bytes_seg.size);
+
+#else
+    blsPublicKeySetCompressedStr(&pub,pubchar,strlen(pubchar));
+#endif
     blsPublicKeyGetCompressedStr(buf,2000,&pub);
 
     print("pubkey: ");
     print(buf);
     print("\n");
 
-
+#ifdef ON_CHAIN
     ret = blsSignatureDeserialize(&sig,lock_bytes,strlen(lock_bytes));
+#else
+    blsSignatureSetCompressedStr(&sig,sigchar,strlen(sigchar));
+#endif
     if(ret == -1){
         print("Set  Signature failed\n");
         return -1;
@@ -160,13 +167,14 @@ int main()
     if(ret==1){
         print("verify success\n");
         ckb_exit(0);
-        return -1;
+        return 0;
 
 
     }
     else{
         print("verify failed\n");
         ckb_exit(-1);
+        return -1;
     }
     ckb_exit(0);
     return 0;

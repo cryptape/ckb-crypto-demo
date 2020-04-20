@@ -2,34 +2,38 @@
 #include <string.h>
 #include <stdio.h>
 
+#define CKB_VM
+
+#include "ckb_syscalls.h"
+
+
+
 int main()
 {
-    blsSecretKey sec;
-    blsPublicKey pub;
-    blsSignature sig;
-    char buf[2000];
-    const char *msg = "abc";
-    const size_t msgSize = strlen(msg);
-    int ret = blsInit(MCL_BLS12_381, MCLBN_COMPILED_TIME_VAR);
-    if (ret) {
-        printf("err %d\n", ret);
-        return 1;
+	blsSecretKey sec;
+	blsPublicKey pub;
+	blsSignature sig;
+	const char *msg = "abc";
+	const size_t msgSize = strlen(msg);
+	int ret = blsInit(MCL_BLS12_381, MCLBN_COMPILED_TIME_VAR);
+	if (ret) {
+		printf("err %d\n", ret);
+		return 1;
+	}
+    char * buf="47b8192d77bf871b62e87859d653922725724a5c031afeabc60bcef5ff665138";
+    blsSecretKeySetHexStr(&sec,buf,strlen(buf));
+	//blsSecretKeySetByCSPRNG(&sec);
+	blsGetPublicKey(&pub, &sec);
+	blsSign(&sig, &sec, msg, msgSize);
+    ret = blsVerify(&sig, &pub, msg, msgSize);
+    if(ret==1){
+        printf("verify success");
+        return(0);
     }
-    blsSetETHmode(BLS_ETH_MODE_LATEST);
-    char * secC = "212122345676543212345678";
+    else{
+        printf("veriy failed");
+        return(-1);
+    }
 
-    blsSecretKeySetHexStr(&sec,secC,strlen(secC));
-    ret = mclBnFr_isValid(&sec.v);
-    printf("%d\n",ret);
-    blsSecretKeyGetCompressedStr(buf,2000,&sec);
-    printf("sec : %s\n",buf);
-    blsGetPublicKey(&pub, &sec);
-    blsSign(&sig, &sec, msg, msgSize);
-
-    blsPublicKeyGetCompressedStr(buf,2000,&pub);
-    printf("pubkey: %s\n",buf);
-
-    blsSignatureGetCompressedStr(buf,2000,&sig);
-    printf("sig: %s\n",buf);
-    printf("verify %d\n", blsVerify(&sig, &pub, msg, msgSize));
+	
 }
