@@ -20,7 +20,7 @@ tx_template_json["mock_info"]["cell_deps"][0]["data"] = data_hex
 tx_template_json["mock_info"]["inputs"][0]["output"]["lock"]["code_hash"] = data_hash
 
 tx_template_json["tx"]["outputs"][0]["lock"]["code_hash"] =  data_hash
-tx_template_json["tx"]["outputs"][0]["type"]["code_hash"] =  data_hash
+#tx_template_json["tx"]["outputs"][0]["type"]["code_hash"] =  data_hash
 
 f = File.open("tx-mocked.json",mode="w")
 

@@ -84,7 +84,7 @@ if(MSVC)
 	link_directories(${CMAKE_SOURCE_DIR}/lib)
 else()
 	if("${CFLAGS_OPT_USER}" STREQUAL "")
-		set(CFLAGS_OPT_USER "-Og -g")
+		set(CFLAGS_OPT_USER "-Os -DNDEBUG")
 	endif()
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra -Wformat=2 -Wcast-qual -Wcast-align -Wwrite-strings -Wfloat-equal -Wpointer-arith ${CFLAGS_OPT_USER}")
 

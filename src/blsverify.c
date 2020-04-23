@@ -1,6 +1,6 @@
 
 #define CKB_VM
-//#define ON_CHAIN
+#define ON_CHAIN
 
 
 #define BLS_ETH //使用ETH的规范
@@ -73,6 +73,8 @@ int main()
         return 1;
         #endif
     }
+
+
     blsSetETHmode(BLS_ETH_MODE_LATEST);
 
 #ifdef CKB_VM
