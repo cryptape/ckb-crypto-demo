@@ -6,16 +6,16 @@
           "dep_type": "code",
           "out_point": {
             "index": "0x0",
-            "tx_hash": "0x98de8fc20b8cde2cac709d75658cf534eb4e06be4fdefc7e9826491e372d0480"
+            "tx_hash": "0x000000000000000000000000000000000000000000000000000000000000ff01"
           }
         },
-        "data": "0x12",
+        "data": "0x31323334",
         "output": {
           "capacity": "0xdf8475800",
           "lock": {
-            "args": "0x61726730",
-            "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
-            "hash_type": "data"
+            "args": "0x0000000000000000000000000000000000000000",
+            "code_hash": "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8",
+            "hash_type": "type"
           },
           "type": null
         }
@@ -50,9 +50,9 @@
         "output": {
           "capacity": "0x6fc23ac00",
           "lock": {
-            "args": "0x88820327e47cba8c3b4b2f32e8e8d06752a26f1ecec1afa2ac3b197e96e03dd315c9c3298dbf755355ed9ea9553ffc1a",
-            "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
-            "hash_type": "data"
+            "args": "0x0000000000000000000000000000000000000000",
+            "code_hash": "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8",
+            "hash_type": "type"
           },
           "type": null
         }
@@ -62,10 +62,10 @@
   "tx": {
     "cell_deps": [
       {
-        "dep_type": "code",
+        "dep_type": "dep_group",
         "out_point": {
           "index": "0x0",
-          "tx_hash": "0x98de8fc20b8cde2cac709d75658cf534eb4e06be4fdefc7e9826491e372d0480"
+          "tx_hash": "0x6495cede8d500e4309218ae50bbcadb8f722f24cc7572dd2274f5876cb603e4e"
         }
       }
     ],
@@ -83,9 +83,14 @@
       {
         "capacity": "0x2cb417800",
         "lock": {
-          "args": "0x9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
-          "code_hash": "0x91a83fca1f98125b09b2027bed69ebd293b4abdfb99bede81bd8ecd903e9359e",
-          "hash_type": "data"
+          "args": "0x0000000000000000000000000000000000000000",
+          "code_hash": "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8",
+          "hash_type": "type"
+        },
+        "type": {
+          "args": "0x0000000000000000000000000000000000000000",
+          "code_hash": "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8",
+          "hash_type": "type"
         }
       }
     ],
@@ -94,7 +99,7 @@
     ],
     "version": "0x0",
     "witnesses": [
-      "0x7400000010000000740000007400000060000000a0daa6c644b92fb4cb5615befd63d283d8dcb47df89c4710e24b6d2c24247d837f9719ef1fd03fb61cf6cccec93c5a50050aa035712e835581e2b00b0bd877b0635ecaae9751e99190bca9b0a7438394070561366e26b84d52a9d7cb8845eee0"
+      "0x616263"
     ]
   }
 }

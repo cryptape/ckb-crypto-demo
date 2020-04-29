@@ -23,7 +23,7 @@ endif()
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_USE_VINT -DMCL_VINT_FIXED_BUFFER")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_OPENSSL")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_XBYAK")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os -DNDEBUG -fno-rtti")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Os -DNDEBUG")
 
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBLS_ETH")
@@ -61,7 +61,7 @@ install(FILES ${BLS_HEADERS} DESTINATION include/bls)
 #add_executable(bls_c384_test test/bls_c384_test.cpp)
 #target_link_libraries(bls_c384_test bls_c384 )
 #add_executable(bls_test  test/bls_test.cpp)
-add_executable(bls_c384_256_test test/bls_c384_256_test.cpp)
+#add_executable(bls_c384_256_test test/bls_c384_256_test.cpp)
 #target_link_libraries(bls_test bls_c384_256)
-target_link_libraries(bls_c384_256_test bls_c384_256 )
+#target_link_libraries(bls_c384_256_test bls_c384_256 )
 

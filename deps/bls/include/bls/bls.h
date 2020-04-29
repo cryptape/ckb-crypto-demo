@@ -342,6 +342,7 @@ BLS_DLL_API int blsPublicKeySetCompressedStr(blsPublicKey *pub, const char *buf,
 BLS_DLL_API int blsSignatureSetCompressedStr(blsSignature *sig, const char *buf, mclSize bufSize);
 BLS_DLL_API mclSize blsSignatureGetCompressedStr(char *buf, mclSize maxBufSize, const blsSignature *sig);
 BLS_DLL_API mclSize blsPublicKeyGetCompressedStr(char *buf, mclSize maxBufSize, const blsPublicKey *pub);
+BLS_DLL_API mclSize blsSecretKeyGetCompressedStr(char *buf, mclSize maxBufSize, const blsSecretKey *sec);
 /*
 	Diffie Hellman key exchange
 	out = sec * pub

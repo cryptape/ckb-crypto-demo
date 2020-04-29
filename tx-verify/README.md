@@ -7,9 +7,10 @@ generate a mocked tx
 - ckb-cli
 ## usage 
 
-- install deps
+###  install deps
 `bundler install`
 
+### Generate and verify
 - generate
 `bundler exec ./tx-mock.rb {path-of-code}`
 
