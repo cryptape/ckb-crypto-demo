@@ -31,5 +31,8 @@ int main()
     int result = pkVerifier.check_signature(Botan::hex_decode(signature_s));
     //std::cout << "is " << (re? "valid\n" : "invalid\n") << std::endl;
 
-    return result;
+    if(result){
+        return 0;
+    } else
+        return 1;
 }

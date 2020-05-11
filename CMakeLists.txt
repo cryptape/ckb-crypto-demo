@@ -1,32 +1,17 @@
-cmake_minimum_required (VERSION 3.0)
-project(ckb_crypto)
+
+cmake_minimum_required(VERSION 3.5)
+project(ed25519)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdata-sections -ffunction-sections -Os")
+set(BUILD_DIRC build)
+
+INCLUDE_DIRECTORIES(${BUILD_DIRC}/include/botan-2)
+include_directories(src/include)
+
+LINK_DIRECTORIES(${BUILD_DIRC}/lib)
 
 
-add_subdirectory(deps/mcl)
-add_subdirectory(deps/bls)
-
-include_directories(deps/mcl/include)
-include_directories(deps/mcl/include)
-
-
-#include_directories("/home/ubuntu/crypto/deps/mcl/include")
-#link_directories("/home/ubuntu/crypto/deps/mcl/build/lib")
-
-#include_directories("/home/ubuntu/crypto/deps/bls/include")
-#link_directories("/home/ubuntu/crypto/deps/bls/build/lib")
-
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_USE_VINT -DMCL_VINT_FIXED_BUFFER")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_OPENSSL")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DMCL_DONT_USE_XBYAK")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DBLS_ETH")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -DNDEBUG")
-
-
-add_executable(blssig src/blssig.cpp)
-add_executable(blsverify src/bls_verify.cpp)
-add_executable(pairing src/pairing_c.cpp)
-
-target_link_libraries(blssig PUBLIC bls_c384_256  mcl::mcl)
-target_link_libraries(blsverify PUBLIC bls_c384_256  mcl::mcl)
-target_link_libraries(pairing   mcl::mcl mcl::bn384_256)
+#add_executable(ed25519 src/ed25519/verify.cpp)
+add_executable(sm2 src/sm2/verify.cpp)
+#TARGET_LINK_LIBRARIES(ed25519 libbotan-2.a )
+TARGET_LINK_LIBRARIES(sm2 libbotan-2.a)
