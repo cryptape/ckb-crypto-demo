@@ -1,0 +1,3 @@
+/code/sm2/CMakeFiles/edit_cache.dir
+/code/sm2/CMakeFiles/rebuild_cache.dir
+/code/sm2/CMakeFiles/sm2.dir
