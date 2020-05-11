@@ -1,14 +1,16 @@
+#define CKB_VM
 
 
 #include <botan/hex.h>
 //#include <iostream>
 #include <botan/ed25519.h>
 
+#ifdef CKB_VM
+#include "ckb_syscalls.h"
+#endif
 
 int main()
 {
-    // Generate Ed255119 private key
-    //Botan::AutoSeeded_RNG rng;
 
     std::vector<uint8_t> m_public;
     //Botan::secure_vector<uint8_t> m_private;
@@ -26,19 +28,7 @@ int main()
     std::vector<uint8_t> sig(64);
 
 
-    // Sign the message
-    //Botan::ed25519_sign(sig.data(),m_msg.data(),m_msg.size(),m_private.data(), nullptr,0);
 
-    /*
-    for (int i = 0; i < sig.size(); i++) {
-        printf("0x%02x,", sig[i]);
-    }
-    printf("\n\n");
-
-    for (int j = 0; j < m_public.size(); j++) {
-        printf("0x%02x,",m_public[j]);
-    }
-    */
 
     uint8_t sig_arr[] =
             {0xdf,0x1c,0x33,0x3a,0x10,0xa3,0x7b,0xf6,0x4b,0x25,0xbf,0x08,0x60,0x9f,0x97,0xc0,0xdf,0x48,0x8d,0x46,
