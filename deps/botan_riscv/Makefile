@@ -1,5 +1,5 @@
 
-# This makefile was generated using 'configure.py --cpu=riscv64 --without-os-feature=threads,thread_local,posix1,filesystem,getauxval --ar-command=/riscv/bin/riscv64-unknown-elf-gcc-ar --cc-bin=/riscv/bin/riscv64-unknown-elf-g++ --minimized-build --disable-shared-library --link-method=copy --enable-modules=sm2,sm3,ecdsa'
+# This makefile was generated using 'configure.py --prefix=/code/build --optimize-for-size --cc-abi-flags=-Wl,-static -fdata-sections -ffunction-sections -Wl,--gc-sections --build-targets=static --cpu=riscv64 --without-os-feature=threads,thread_local,posix1,filesystem,getauxval --ar-command=/riscv/bin/riscv64-unknown-elf-gcc-ar --cc-bin=/riscv/bin/riscv64-unknown-elf-g++ --minimized-build --disable-shared-library --link-method=copy --enable-modules=sm2,sm3,ecdsa'
 
 # Paths to relevant programs
 
@@ -11,9 +11,9 @@ PYTHON_EXE     = python
 
 # Compiler Flags
 
-ABI_FLAGS      =  -fstack-protector
+ABI_FLAGS      =  -fstack-protector -Wl,-static -fdata-sections -ffunction-sections -Wl,--gc-sections
 LANG_FLAGS     = -std=c++11 -D_REENTRANT 
-CXXFLAGS       = -O3 -DBOTAN_IS_BEING_BUILT
+CXXFLAGS       = -Os -DBOTAN_IS_BEING_BUILT
 WARN_FLAGS     = -Wall -Wextra -Wpedantic -Wstrict-aliasing -Wcast-align -Wmissing-declarations -Wpointer-arith -Wcast-qual -Wzero-as-null-pointer-constant -Wnon-virtual-dtor
 LIB_FLAGS      = 
 LDFLAGS        = 
@@ -26,10 +26,10 @@ EXE_LINKS_TO   = -L. -lbotan-2 $(LIB_LINKS_TO)
 BUILD_FLAGS    = $(ABI_FLAGS) $(LANG_FLAGS) $(CXXFLAGS) $(WARN_FLAGS)
 
 SCRIPTS_DIR    = src/scripts
-INSTALLED_LIB_DIR = /usr/local/lib
+INSTALLED_LIB_DIR = /code/build/lib
 
 # The primary target
-all: libs cli tests docs
+all: libs docs
 
 # Executable targets
 
@@ -52,8 +52,8 @@ clean:
 distclean:
 	$(PYTHON_EXE) $(SCRIPTS_DIR)/cleanup.py --build-dir="build" --distclean
 
-install: libs cli docs
-	$(PYTHON_EXE) $(SCRIPTS_DIR)/install.py --prefix="/usr/local" --build-dir="build" --bindir=/usr/local/bin --libdir=/usr/local/lib --docdir=share/doc --includedir=include
+install: libs docs
+	$(PYTHON_EXE) $(SCRIPTS_DIR)/install.py --prefix="/code/build" --build-dir="build" --bindir=/code/build/bin --libdir=/code/build/lib --docdir=share/doc --includedir=include
 
 check: tests
 	$(PYTHON_EXE) $(SCRIPTS_DIR)/check.py --build-dir="build"

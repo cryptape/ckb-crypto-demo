@@ -19,9 +19,9 @@ pk_ops_impl.h
 </header:internal>
 
 <requires>
-asn1
+
 bigint
-kdf
+
 pem
 pk_pad
 numbertheory
