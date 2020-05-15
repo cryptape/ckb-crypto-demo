@@ -1,5 +1,5 @@
 
-# This makefile was generated using 'configure.py --prefix=/code/build --optimize-for-size --cc-abi-flags=-Wl,-static -fdata-sections -ffunction-sections -Wl,--gc-sections --build-targets=static --cpu=riscv64 --without-os-feature=threads,thread_local,posix1,filesystem,getauxval --ar-command=/riscv/bin/riscv64-unknown-elf-gcc-ar --cc-bin=/riscv/bin/riscv64-unknown-elf-g++ --minimized-build --disable-shared-library --link-method=copy --enable-modules=sm2,sm3,ecdsa'
+# This makefile was generated using 'configure.py --prefix=/code/build --cpu=riscv64 --ar-command=/riscv/bin/riscv64-unknown-elf-gcc-ar --cc-bin=/riscv/bin/riscv64-unknown-elf-g++ --cc-abi-flags= -Wl,-static -fdata-sections -ffunction-sections -Wl,--gc-sections --build-targets=static --without-os-feature=threads,thread_local,posix1,filesystem,getauxval --minimized-build --disable-shared-library --link-method=copy --enable-modules=sm2,sm3,ecdsa'
 
 # Paths to relevant programs
 
@@ -11,9 +11,9 @@ PYTHON_EXE     = python
 
 # Compiler Flags
 
-ABI_FLAGS      =  -fstack-protector -Wl,-static -fdata-sections -ffunction-sections -Wl,--gc-sections
+ABI_FLAGS      =  -fstack-protector  -Wl,-static -fdata-sections -ffunction-sections -Wl,--gc-sections
 LANG_FLAGS     = -std=c++11 -D_REENTRANT 
-CXXFLAGS       = -Os -DBOTAN_IS_BEING_BUILT
+CXXFLAGS       = -O3 -DBOTAN_IS_BEING_BUILT
 WARN_FLAGS     = -Wall -Wextra -Wpedantic -Wstrict-aliasing -Wcast-align -Wmissing-declarations -Wpointer-arith -Wcast-qual -Wzero-as-null-pointer-constant -Wnon-virtual-dtor
 LIB_FLAGS      = 
 LDFLAGS        = 

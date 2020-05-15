@@ -2,7 +2,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(ed25519)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdata-sections -ffunction-sections -Os")
+set(CMAKE_CXX_STANDARD 11)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdata-sections -ffunction-sections -O3")
 set(BUILD_DIRC build)
 
 INCLUDE_DIRECTORIES(${BUILD_DIRC}/include/botan-2)
