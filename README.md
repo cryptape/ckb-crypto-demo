@@ -3,6 +3,10 @@ Fundamental cryptography libraries for CKB
 
 **We divided into two directories, locally generated signature public key and verified signature on the chain. Specific operation details can be viewed after `cd` entry. Thanks for the support of Nervos, and the open source password library `botan`.**
 
+## Generate signature locally
+
+There are two directories for signature generation. The botan directory is the source code of the entire password library. We package the signature algorithm into a static library libbotan-2.a, and call the corresponding algorithm in cli to generate the signature and return pub/pri key.
+
 ### botan_x86
 This directory contains all the source code of the botan library, and We made some modifications to the library source code, and the `Makefile` is written by us, and `libbotan-2.a` can be directly generated through the `Makefile`.
 Of course, you can also customize to generate the desired plan, through the [./configure.py](https://botan.randombit.net/handbook/building.html) script. However, this is not recommended because the Makefile generated in that way will be much more complicated, and we have made it as lightweight as possible
