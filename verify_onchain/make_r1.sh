@@ -1,0 +1,1 @@
+docker run --rm -v `pwd`:/code nervos/ckb-riscv-gnu-toolchain:xenial-full-20191209  bash -c "cd /code/r1 && cmake -DCMAKE_TOOLCHAIN_FILE=CMakeRiscvToolchain.txt && make && /riscv/bin/riscv64-unknown-elf-strip r1"
